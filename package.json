@@ -1,0 +1,40 @@
+{
+  "name": "@personal-api/plugin-instagram",
+  "version": "0.9.0",
+  "description": "Fetch recent Instagram photos for a user.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run unit",
+    "lint": "xo",
+    "unit": "nyc ava"
+  },
+  "author": "Chris Vogt <mail@chrisvogt.me>",
+  "license": "MIT",
+  "keywords": [
+    "instagram",
+    "instagram-photos",
+    "personal-api",
+    "photos",
+    "social"
+  ],
+  "dependencies": {
+    "got": "^9.6.0"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
+  "xo": {
+    "space": true
+  },
+  "devDependencies": {
+    "ava": "^1.2.0",
+    "codecov": "^3.1.0",
+    "nyc": "^13.1.0",
+    "proxyquire": "^2.1.0",
+    "sinon": "^7.2.3",
+    "xo": "^0.24.0"
+  }
+}
