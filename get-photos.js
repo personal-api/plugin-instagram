@@ -6,29 +6,32 @@ const INSTAGRAM_QUERY = '?access_token={access_token}';
 
 const PHOTOS_ENDPOINT = `${INSTAGRAM_BASE}${INSTAGRAM_PATH}${INSTAGRAM_QUERY}`;
 
-const RESPONSE_FAILURE = 'FAILURE';
-const RESPONSE_SUCCESS = 'SUCCESS';
-
-const getPhotos = async (accessToken, userId, count) => {
-  const url = PHOTOS_ENDPOINT
+const getPhotos = async (accessToken, userId, maxPageCount) => {
+  let url = PHOTOS_ENDPOINT
     .replace(/{access_token}/g, accessToken)
-    .replace(/{count}/g, count)
     .replace(/{user_id}/g, userId);
 
-  try {
-    const response = await got(url);
-    const {data} = JSON.parse(response.body);
+  const acc = {orig: url, pages: [], urls: []};
+  let response;
 
-    return {
-      result: RESPONSE_SUCCESS,
-      data
-    };
-  } catch (error) {
-    return {
-      result: RESPONSE_FAILURE,
-      error
-    };
+  while (url && acc.pages.length <= maxPageCount) {
+    acc.urls.push(url);
+
+    response = await got(url);
+    const {
+      data,
+      pagination
+    } = JSON.parse(response.body);
+
+    url = pagination.next_url;
+
+    acc.pages.push(data);
   }
+
+  const {pages: photos} = acc;
+  return {
+    photos
+  };
 };
 
 module.exports = getPhotos;
