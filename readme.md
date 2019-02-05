@@ -1,4 +1,4 @@
-# Instagram Plugin [![Build Status](https://travis-ci.org/personal-api/plugin-instagram.svg?branch=master)](https://travis-ci.org/personal-api/plugin-instagram) [![codecov](https://codecov.io/gh/personal-api/plugin-instagram.svg?branch=master)](https://codecov.io/gh/personal-api/plugin-instagram?branch=master)
+# Instagram Plugin [![Build Status](https://travis-ci.org/personal-api/plugin-instagram.svg?branch=master)](https://travis-ci.org/personal-api/plugin-instagram) [![codecov](https://codecov.io/gh/personal-api/plugin-instagram/branch/master/graph/badge.svg)](https://codecov.io/gh/personal-api/plugin-instagram?branch=master)
 
 > Add recent photos to JS Personal API
 
