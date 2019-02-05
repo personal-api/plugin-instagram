@@ -4,10 +4,7 @@ const sendSuccess = (res, result) => {
   const response = {};
 
   response.status = 'ok';
-
-  if (result) {
-    response.result = result;
-  }
+  response.result = result;
 
   res.type('json');
   res.status = 200;
@@ -25,7 +22,7 @@ class InstagramPlugin {
   async controller(req, res) {
     const {
       accessToken,
-      count = 12,
+      count = 3,
       userId
     } = this.options;
 
