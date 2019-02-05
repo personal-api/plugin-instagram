@@ -27,8 +27,7 @@
     ]
   },
   "xo": {
-    "space": true,
-    "no-await-in-loop": false
+    "space": true
   },
   "devDependencies": {
     "ava": "^1.2.0",

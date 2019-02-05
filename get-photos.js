@@ -16,21 +16,20 @@ const getPhotos = async (accessToken, userId, count = 3) => {
   const acc = {pages: [], urls: []};
   let response;
 
+  /* eslint-disable no-await-in-loop */
   while (url && acc.pages.length <= count && !acc.urls.includes(url)) {
     acc.urls.push(url);
-
-    /* eslint-disable no-await-in-loop */
     response = await got(url);
-    /* eslint-enable no-await-in-loop */
+
     const {
       data = [],
       pagination = {}
     } = JSON.parse(response.body);
 
     url = pagination.next_url;
-
     acc.pages.push(data);
   }
+  /* eslint-enable no-await-in-loop */
 
   const {pages: photos} = acc;
   return {

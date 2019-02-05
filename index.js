@@ -4,10 +4,7 @@ const sendSuccess = (res, result) => {
   const response = {};
 
   response.status = 'ok';
-
-  if (result) {
-    response.result = result;
-  }
+  response.result = result;
 
   res.type('json');
   res.status = 200;

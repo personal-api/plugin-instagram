@@ -3,8 +3,11 @@ import proxyquire from 'proxyquire';
 import {stub} from 'sinon';
 
 const mockGetPhotos = stub();
-const mockApp = {
-  use: stub()
+const mockApp = {use: stub()};
+const mockReq = {};
+const mockRes = {
+  type: stub(),
+  json: stub()
 };
 
 const mockValidCreds = {
@@ -19,6 +22,8 @@ const Plugin = proxyquire('../index.js', {
 test.afterEach(() => {
   mockGetPhotos.resetHistory();
   mockApp.use.resetHistory();
+  mockRes.type.resetHistory();
+  mockRes.json.resetHistory();
 });
 
 test.serial('throws when called without an access token', t => {
@@ -44,4 +49,15 @@ test.serial('it attaches a new route for instagram', t => {
   plugin.apply(mockApp);
 
   t.is(mockApp.use.args[0][0], '/instagram');
+});
+
+test.serial('it forwards user options to the getter function', t => {
+  const plugin = new Plugin(mockValidCreds);
+
+  plugin.apply(mockApp);
+  plugin.controller(mockReq, mockRes);
+
+  console.log(mockGetPhotos.args);
+
+  t.deepEqual(mockGetPhotos.args, [['abc', '123', 3]]);
 });
