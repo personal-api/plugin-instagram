@@ -16,7 +16,6 @@ Call `apply()` with your Express `app` object to apply.
 
 ```js
 import InstagramPlugin from '@personal-api/plugin-instagram';
-import handlers from '../api/handlers';
 
 export default (app) => {
   const Instagram = new InstagramPlugin({
