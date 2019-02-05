@@ -12,8 +12,6 @@ $ npm install --save @personal-api/plugin-instagram
 
 ## Usage
 
-#### Default key is `id`
-
 Call `apply()` with your Express `app` object to apply.
 
 ```js
@@ -30,6 +28,7 @@ export default (app) => {
   Instagram.apply(app);
 };
 ```
+
 
 ## License
 
