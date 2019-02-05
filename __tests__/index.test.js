@@ -57,7 +57,5 @@ test.serial('it forwards user options to the getter function', t => {
   plugin.apply(mockApp);
   plugin.controller(mockReq, mockRes);
 
-  console.log(mockGetPhotos.args);
-
   t.deepEqual(mockGetPhotos.args, [['abc', '123', 3]]);
 });
