@@ -6,21 +6,25 @@ const INSTAGRAM_QUERY = '?access_token={access_token}';
 
 const PHOTOS_ENDPOINT = `${INSTAGRAM_BASE}${INSTAGRAM_PATH}${INSTAGRAM_QUERY}`;
 
-const getPhotos = async (accessToken, userId, maxPageCount) => {
+const flatten = list => list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+
+const getPhotos = async (accessToken, userId, count = 3) => {
   let url = PHOTOS_ENDPOINT
     .replace(/{access_token}/g, accessToken)
     .replace(/{user_id}/g, userId);
 
-  const acc = {orig: url, pages: [], urls: []};
+  const acc = {pages: [], urls: []};
   let response;
 
-  while (url && acc.pages.length <= maxPageCount) {
+  while (url && acc.pages.length <= count && !acc.urls.includes(url)) {
     acc.urls.push(url);
 
+    /* eslint-disable no-await-in-loop */
     response = await got(url);
+    /* eslint-enable no-await-in-loop */
     const {
-      data,
-      pagination
+      data = [],
+      pagination = {}
     } = JSON.parse(response.body);
 
     url = pagination.next_url;
@@ -30,7 +34,7 @@ const getPhotos = async (accessToken, userId, maxPageCount) => {
 
   const {pages: photos} = acc;
   return {
-    photos
+    photos: flatten(photos)
   };
 };
 

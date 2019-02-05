@@ -25,7 +25,7 @@ class InstagramPlugin {
   async controller(req, res) {
     const {
       accessToken,
-      count = 12,
+      count = 3,
       userId
     } = this.options;
 
