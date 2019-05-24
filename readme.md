@@ -12,7 +12,7 @@ $ npm install --save @personal-api/plugin-instagram
 
 ## Usage
 
-Call `apply()` with your Express `app` object to apply. In your [JS Personal API plugins file](https://github.com/personal-api/core/blob/master/src/plugins/index.js) add and attach the plugins you wish to use, passing the following required options.
+In your [JS Personal API plugins file](https://github.com/personal-api/core/blob/master/src/plugins/index.js) instantiate the `InstagramPlugin` class, passing the following required options defined below under _Options_, and call `apply()` with the Express `app` object.
 
 ```js
 import InstagramPlugin from '@personal-api/plugin-instagram';
