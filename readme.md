@@ -43,6 +43,7 @@ Your Instagram [access token](https://www.instagram.com/developer/authentication
 #### count
 
 Type: `Number`
+
 Default: `3`
 
 (Optional) The maximum number of pagination pages to fetch from Instagram.
